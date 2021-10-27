@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize16:antialias=true:autohint=true";
+static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -93,44 +93,42 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
-/* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+const char *colorname[] = {
 
-	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+/* 8 normal colors */
+[0] = "#000e15", /* black   */
+[1] = "#4b1a1a", /* red     */
+[2] = "#4f6f55", /* green   */
+[3] = "#80815e", /* yellow  */
+[4] = "#BD93F9", /* blue    */
+[5] = "#FF79C6", /* magenta */
+[6] = "#8BE9FD", /* cyan    */
+[7] = "#a6a69c", /* white   */
 
-	[255] = 0,
+/* 8 bright colors */
+[8]  = "#6272A4",  /* black   */
+[9]  = "#4b1a1a",  /* red     */
+[10] = "#4f6f55", /* green   */
+[11] = "#80815e", /* yellow  */
+[12] = "#D6ACFF", /* blue    */
+[13] = "#FF92DF", /* magenta */
+[14] = "#A4FFFF", /* cyan    */
+[15] = "#FFFFFF", /* white   */
 
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
+/* special colors */
+[256] = "#000e15", /* background */
+[257] = "#a6a69c", /* foreground */
+[258] = "#F8F8F2",     /* cursor */
 };
 
+/* Default colors (colorname index)
+ *  * foreground, background, cursor */
+ unsigned int defaultbg = 0;
+  unsigned int defaultfg = 257;
+   unsigned int defaultcs = 258;
+    unsigned int defaultrcs= 258;
 
-/*
- * Default colors (colorname index)
- * foreground, background, cursor, reverse cursor
- */
-unsigned int defaultfg = 7;
-unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+
 
 /*
  * Default shape of cursor
